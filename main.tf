@@ -28,12 +28,12 @@ resource "aws_instance" "server" {
   instance_type               = "${var.instance_type}"
   key_name                    = "${var.key_name}"
   associate_public_ip_address = "true"
-  vpc_security_group_ids      = ["${aws_security_group.instance.id}"]
+  vpc_security_group_ids      = ["${aws_security_group.security_group.id}"]
 }
 
 # take public dns of newly created server and add it to JSON
 data "template_file" "json" {
-  template = "${file("${path.module}/conf/precise64.json")}"
+  template = "${file("${path.module}/conf/xenial64.json")}"
 
   vars = {
     dns = "${aws_instance.server.public_dns}"
@@ -51,7 +51,7 @@ resource "null_resource" "add_json" {
 
   provisioner "file" {
     content     = "${data.template_file.json.rendered}"
-    destination = "/tmp/precise64.json"
+    destination = "/tmp/xenial64.json"
 
     connection {
       type        = "ssh"
@@ -70,7 +70,7 @@ data "template_file" "nginx" {
   }
 }
 
-# add template content JSON as a file to target webserver 
+# add template content nginx as a file to target webserver 
 resource "null_resource" "add_nginx" {
   connection {
     host = "${aws_instance.server.public_ip}"
@@ -88,23 +88,6 @@ resource "null_resource" "add_nginx" {
   }
 }
 
-# Add both boxes to the server
-resource "null_resource" "add_assets" {
-  connection {
-    host = "${aws_instance.server.public_ip}"
-  }
-
-  provisioner "file" {
-    source      = "assets"
-    destination = "/tmp"
-
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      private_key = "${file("${var.private_key}")}"
-    }
-  }
-}
 
 # Copy all needed configuration to newly created EC2 instance
 resource "null_resource" "add_provision_script" {
@@ -125,9 +108,8 @@ resource "null_resource" "add_provision_script" {
 }
 
 # Executing provision script
-# Do not forget to add on depends_on section "null_resource.add_assets" !!!!
 resource "null_resource" "execute_provision_script" {
-  depends_on = ["null_resource.add_json", "null_resource.add_nginx", "null_resource.add_provision_script", "null_resource.add_assets"]
+  depends_on = ["null_resource.add_json", "null_resource.add_nginx", "null_resource.add_provision_script"]
 
   connection {
     host = "${aws_instance.server.public_ip}"
