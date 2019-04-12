@@ -26,7 +26,7 @@ resource "aws_security_group" "security_group" {
 resource "aws_instance" "server" {
   ami                         = "${var.ami}"
   instance_type               = "${var.instance_type}"
-  key_name                    = "${var.key_name}"
+  key_name                    = "${var.ssh_key_name}"
   associate_public_ip_address = "true"
   vpc_security_group_ids      = ["${aws_security_group.security_group.id}"]
 }
@@ -87,7 +87,6 @@ resource "null_resource" "add_nginx" {
     }
   }
 }
-
 
 # Copy all needed configuration to newly created EC2 instance
 resource "null_resource" "add_provision_script" {
