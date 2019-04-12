@@ -8,9 +8,8 @@
 
 # Create main directory structure of the webserver
 [ -d "/var/www/vagrant" ] || {
-  mkdir -p /var/www/vagrant/precise64/boxes
-  cp /tmp/precise64.json /var/www/vagrant/precise64/
-  cp /tmp/assets/*.box /var/www/vagrant/precise64/boxes/
+  mkdir -p /var/www/vagrant/xenial64/boxes
+  cp /tmp/xenial64.json /var/www/vagrant/xenial64/
 }
 
 # Setup webserver
