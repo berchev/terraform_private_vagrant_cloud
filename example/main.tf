@@ -5,6 +5,6 @@ module "privatevc" {
   aws_access_key = "${var.aws_access_key}"
   aws_secret_key = "${var.aws_secret_key}"
   instance_type  = "${var.instance_type}"
-  key_name       = "${var.key_name}"
+  ssh_key_name   = "${var.ssh_key_name}"
   private_key    = "${var.private_key}"
 }
