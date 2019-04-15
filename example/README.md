@@ -49,13 +49,13 @@ example/ folder is separate project. The idea is to use [root repo content](http
     terraform apply
     ```
   - Once execution finish you will see output very similar to this one:
-  ```
-     Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
+    ```
+    Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
 
     Outputs:
 
     pulic_dns = ec2-54-191-171-2.us-west-2.compute.amazonaws.com
-  ```
+    ```
   - Test whether following URL can be open: `http://ec2-54-191-171-2.us-west-2.compute.amazonaws.com/vagrant/xenial64`, do not forget to substitute **ec2-54-191-171-2.us-west-2.compute.amazonaws.com** with output from your terraform run.
   - Testing above address in your browser, will return JSON versioning catalog.
 
