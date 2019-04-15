@@ -78,25 +78,25 @@ example/ folder is separate project. The idea is to use [root repo content](http
   - Type: `bundle exec kitchen list` and you should notice that environment is created
   - Type: `bundle exec kitchen verify` to test the created kitchen environment based on the tests in test/integration/default directory
   - If everything is OK, you should see output very similar to the one below:
-  ```
-  Profile: default
-  Version: (not specified)
-  Target:  ssh://ubuntu@ec2-52-25-179-20.us-west-2.compute.amazonaws.com:22
+    ```
+    Profile: default
+    Version: (not specified)
+    Target:  ssh://ubuntu@ec2-52-25-179-20.us-west-2.compute.amazonaws.com:22
 
-    ✔  operating_system: Command: `lsb_release -a`
-       ✔  Command: `lsb_release -a` stdout should match /Ubuntu/
-       ✔  System Package nginx should be installed
-       ✔  File /etc/nginx/sites-available/localhost should exist
-    ✔  check_json: HTTP GET on http://ec2-52-25-179-20.us-west-2.compute.amazonaws.com/vagrant/xenial64/
-       ✔  HTTP GET on http://ec2-52-25-179-20.us-west-2.compute.amazonaws.com/vagrant/xenial64/ status should cmp == 200
+      ✔  operating_system: Command: `lsb_release -a`
+         ✔  Command: `lsb_release -a` stdout should match /Ubuntu/
+         ✔  System Package nginx should be installed
+         ✔  File /etc/nginx/sites-available/localhost should exist
+      ✔  check_json: HTTP GET on http://ec2-52-25-179-20.us-west-2.compute.amazonaws.com/vagrant/xenial64/
+         ✔  HTTP GET on http://ec2-52-25-179-20.us-west-2.compute.amazonaws.com/vagrant/xenial64/ status should cmp == 200
 
 
-  Profile Summary: 2 successful controls, 0 control failures, 0 controls skipped
-  Test Summary: 4 successful, 0 failures, 0 skipped
-         Finished verifying <default-ubuntu> (0m11.09s).
-  -----> Kitchen is finished. (0m12.35s)
-
-  ``` 
+    Profile Summary: 2 successful controls, 0 control failures, 0 controls skipped
+    Test Summary: 4 successful, 0 failures, 0 skipped
+           Finished verifying <default-ubuntu> (0m11.09s).
+    -----> Kitchen is finished. (0m12.35s)
+  
+    ``` 
   - Type: `bundle exec kitchen destroy` in order to destroy the created kitchen environmen
 
 ## Conclusion
