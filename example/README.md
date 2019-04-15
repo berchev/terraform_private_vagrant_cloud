@@ -100,8 +100,8 @@ example/ folder is separate project. The idea is to use [root repo content](http
   - Type: `bundle exec kitchen destroy` in order to destroy the created kitchen environmen
 
 ## Conclusion
-For any questions or request, please feel free to open an issue
-All instruction provided above are tested with OS Ubuntu 18.04
+- For any questions or request, please feel free to open an issue
+- All instruction provided above are tested with OS Ubuntu 18.04
 
 ## TODO
 - [x] example/ directory to work as separate project (use module)
