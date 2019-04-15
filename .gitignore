@@ -2,3 +2,9 @@ terraform.tfvars
 .terraform/
 terraform.tfstate*
 assets/*.box
+example/vendor
+example/terraform.tfvars
+example/terraform.tfstate*
+example/.bundle/
+example/.kitchen/
+example/Gemfile.lock
